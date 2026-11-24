@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Lidmaatskap – page styles (builds on wie-is-ons.css shared page styles)
+   ========================================================================== */
+
+.lid .wie-hero { min-height: 340px; }
+/* photo 4 is busy, so the overlay is darker here to keep the text readable */
+.lid .wie-hero {
+	background:
+		radial-gradient(ellipse at center, rgba(3, 30, 48, 0.62), rgba(3, 30, 48, 0.4) 70%),
+		linear-gradient(180deg, rgba(3, 40, 58, 0.25), rgba(3, 30, 48, 0.6)),
+		var(--wie-hero-bg) center 30% / cover no-repeat;
+}
+.lid .wie-hero__title { font-size: clamp(44px, 6.4vw, 96px); }
+
+/* ---------- Layout ---------- */
+.lid-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 32px; align-items: stretch; }
+
+/* ---------- Form ---------- */
+.lid-form { padding: 36px 40px 34px; border-radius: 30px; }
+.lid-form__intro { margin: 6px 0 22px; font-size: 15.5px; line-height: 1.6; opacity: 0.92; }
+
+.form { display: grid; gap: 22px; }
+.form__group { margin: 0; padding: 0; border: 0; display: grid; gap: 14px; min-width: 0; }
+.form__group legend {
+	padding: 0 0 8px;
+	margin-bottom: 4px;
+	width: 100%;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	color: var(--gold);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form__row--phone { grid-template-columns: 1.6fr 1fr; }
+
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font-size: 14px; font-weight: 500; }
+.req { color: var(--red); font-weight: 700; }
+.opt { opacity: 0.7; font-weight: 400; }
+
+.field input,
+.field select,
+.field textarea {
+	width: 100%;
+	padding: 13px 16px;
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 14px;
+	background: rgba(0, 20, 34, 0.4);
+	color: #fff;
+	font: inherit;
+	font-size: 15px;
+	transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.field textarea { resize: vertical; min-height: 92px; }
+.field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%); background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+.field select option { color: #032a3b; }
+.field ::placeholder { color: rgba(255, 255, 255, 0.5); }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(255, 255, 255, 0.6); }
+.field input:focus, .field select:focus, .field textarea:focus {
+	outline: none;
+	border-color: #8ff3ff;
+	background: rgba(0, 40, 58, 0.55);
+	box-shadow: 0 0 0 3px rgba(143, 243, 255, 0.25), 0 0 18px rgba(80, 220, 240, 0.25);
+}
+.was-validated .field input:invalid { border-color: var(--red); }
+
+/* Choice cards (radio) */
+.choices { display: grid; gap: 10px; }
+.choice { display: block; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice__box {
+	display: grid;
+	gap: 2px;
+	padding: 14px 18px 14px 52px;
+	position: relative;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 16px;
+	background: rgba(0, 20, 34, 0.3);
+	transition: border-color 0.2s ease, background 0.2s ease;
+}
+.choice__box::before {
+	content: "";
+	position: absolute;
+	left: 18px; top: 50%;
+	width: 18px; height: 18px;
+	margin-top: -9px;
+	border: 2px solid rgba(255, 255, 255, 0.7);
+	border-radius: 50%;
+	transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.choice__title { font-size: 15px; font-weight: 600; }
+.choice__text { font-size: 13.5px; line-height: 1.5; opacity: 0.8; }
+.choice:hover .choice__box { border-color: rgba(255, 255, 255, 0.6); }
+.choice input:checked + .choice__box { border-color: var(--gold); background: rgba(255, 193, 46, 0.1); }
+.choice input:checked + .choice__box::before { border-color: var(--gold); background: radial-gradient(circle, var(--gold) 0 45%, transparent 50%); box-shadow: 0 0 10px rgba(255, 193, 46, 0.6); }
+.choice input:focus-visible + .choice__box { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.form__actions { display: flex; justify-content: center; }
+.form__actions .btn { border: 0; font-family: inherit; }
+
+/* ---------- Gallery slideshow (shows whole photos, never crops) ---------- */
+.lid-gallery { display: flex; flex-direction: column; gap: 24px; }
+.slideshow--gallery {
+	flex: 0 0 auto;
+	aspect-ratio: auto;
+	max-height: none;
+	height: 600px;
+	border-radius: 30px;
+}
+.slideshow--gallery .slideshow__slide { display: grid; place-items: center; overflow: hidden; }
+.slideshow--gallery .slideshow__bg {
+	position: absolute;
+	inset: -30px;
+	width: calc(100% + 60px);
+	height: calc(100% + 60px);
+	max-width: none;
+	object-fit: cover;
+	filter: blur(26px) brightness(0.65) saturate(1.2);
+}
+.slideshow--gallery .slideshow__img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	object-fit: contain; /* never cropped */
+	padding: 14px 14px 40px;
+	filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.45));
+}
+
+/* ---------- Verse card (fills the space under the slideshow) ---------- */
+.verse {
+	position: relative;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 200px;
+	margin: 0;
+	padding: 34px 36px 28px;
+	overflow: hidden;
+	border-radius: 30px;
+	text-align: center;
+}
+.verse::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(ellipse at 50% 0%, rgba(255, 193, 46, 0.18), transparent 65%);
+	pointer-events: none;
+}
+.verse__mark {
+	position: relative;
+	display: block;
+	height: 0.55em;
+	margin-bottom: 6px;
+	color: var(--gold);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 78px;
+	line-height: 1;
+	opacity: 0.9;
+}
+.verse__text {
+	position: relative;
+	max-width: 30em;
+	margin: 0;
+	font-family: var(--font-script-3);
+	font-size: clamp(22px, 2vw, 28px);
+	font-weight: 400;
+	font-style: normal;
+	line-height: 1.5;
+	color: #fff;
+}
+.verse__line { position: relative; display: block; width: 56px; height: 3px; margin: 20px 0 12px; background: var(--red); }
+.verse__ref { position: relative; color: var(--gold); font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+	.lid-grid { grid-template-columns: 1fr; }
+	.slideshow--gallery { height: auto; aspect-ratio: 4 / 3; }
+}
+@media (max-width: 600px) {
+	.lid-form { padding: 26px 20px; }
+	.form__row, .form__row--phone { grid-template-columns: 1fr; }
+}

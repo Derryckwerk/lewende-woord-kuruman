@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Phone refinements. Loaded ONLY at widths up to 700px (see functions.php),
+   so nothing here can change the desktop layout.
+   ========================================================================== */
+
+/* hero titles: long words (LIDMAATSKAP, KOMENDE GEBEURE...) must fit the screen */
+.wie-hero__title,
+.lid .wie-hero__title,
+.span .wie-hero__title,
+.bydrae .wie-hero__title,
+.gebeure .wie-hero__title,
+.bed .wie-hero__title {
+	font-size: clamp(30px, 9vw, 46px);
+	letter-spacing: 0.04em;
+	overflow-wrap: anywhere;
+}
+.k-hero__title { font-size: clamp(40px, 12vw, 56px); }
+
+/* small gold lines above titles: keep on one line where possible */
+.eyebrow { justify-content: center; text-align: center; font-size: 12.5px; letter-spacing: 0.2em; }
+
+.bank__head h2 { font-size: 16px; letter-spacing: 0.1em; }
+.give-intro .section-heading { letter-spacing: 0.1em; }
+
+/* 16px inputs stop iPhones zooming the page when a field is tapped */
+.field input,
+.field select,
+.field textarea { font-size: 16px; }
+
+/* comfortable tap targets */
+.primary-nav a { padding-top: 14px; padding-bottom: 14px; }
+.copy, .ministry__phone, .chips a { min-height: 44px; }
+
+/* the sticky/hover lifts feel odd under a thumb */
+.ministry:hover, .member:hover, .card:hover, .value:hover, .k-card:hover, .creed__item:hover { transform: none; }

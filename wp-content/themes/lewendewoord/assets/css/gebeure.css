@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Komende Gebeure – page styles (builds on wie-is-ons.css shared page styles)
+   ========================================================================== */
+
+.gebeure .wie-hero { min-height: 400px; }
+/* people sit in a row through the middle of the photo, so centre the crop there */
+.gebeure .wie-hero {
+	background:
+		radial-gradient(ellipse at center, rgba(3, 30, 48, 0.68), rgba(3, 30, 48, 0.25) 75%),
+		linear-gradient(180deg, rgba(3, 40, 58, 0.1), rgba(3, 30, 48, 0.45)),
+		var(--wie-hero-bg) center 52% / cover no-repeat;
+}
+.gebeure .wie-hero__title { font-size: clamp(40px, 6vw, 92px); }
+
+/* ---------- Adverts ----------
+   Each advert is shown at (at most) its natural size, never stretched.
+   Small ones sit next to each other; big ones wrap onto their own row. */
+.ads { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 32px; width: 100%; max-width: 1340px; margin: 0 auto; }
+.ad { margin: 0; flex: 0 1 auto; width: min(100%, calc(var(--ad-w, 1000px) + 24px)); }
+.ad__frame {
+	display: block;
+	padding: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 30px;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.06));
+	-webkit-backdrop-filter: blur(14px);
+	backdrop-filter: blur(14px);
+	box-shadow: 0 0 36px rgba(111, 217, 255, 0.22), 0 14px 30px rgba(0, 0, 0, 0.25);
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.ad__frame:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 0 40px rgba(255, 193, 46, 0.3), 0 18px 34px rgba(0, 0, 0, 0.3); }
+.ad__img { display: block; width: 100%; height: auto; border-radius: 22px; }
+
+.ads__empty { display: grid; justify-items: center; gap: 12px; padding: 44px 36px; border-radius: 28px; text-align: center; }
+.ads__empty-icon { width: 54px; height: 54px; color: var(--gold); }
+.ads__empty p { margin: 0; font-size: 17px; }
+
+@media (max-width: 600px) {
+	.ad__frame { padding: 6px; border-radius: 22px; }
+	.ad__img { border-radius: 16px; }
+}

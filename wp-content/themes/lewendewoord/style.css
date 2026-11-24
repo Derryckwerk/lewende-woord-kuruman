@@ -1,0 +1,13 @@
+/*
+Theme Name: Levende Woord
+Theme URI: https://lewendewoord.local
+Author: Lewende Woord Kuruman
+Description: Pasgemaakte tema vir Lewende Woord Kuruman (Vernuwingsgemeente).
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: lewendewoord
+Language: af
+*/
+
+/* All theme styles live in assets/css/main.css (enqueued in functions.php). */

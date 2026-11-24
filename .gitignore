@@ -1,0 +1,14 @@
+# Ignore everything by default; this repo tracks only our own custom code
+# (WordPress core, wp-config.php, third-party plugins/themes, and uploads
+# are intentionally excluded — they don't belong in this repo).
+/*
+
+!.gitignore
+!README.md
+
+!wp-content/
+wp-content/*
+
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/lewendewoord/
